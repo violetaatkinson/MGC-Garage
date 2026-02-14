@@ -1,10 +1,10 @@
+import Footer from "./components/Footer"
 
-import Button from './components/Button'
 
 function App() {
   return (
     <div>
-      <Button label='soy una prop/ un parametro'/>
+      <Footer/>
     </div>
   )
 }
