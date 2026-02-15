@@ -8,9 +8,11 @@ const Navbar = () => {
 				<h1 className="text-white font-semibold text-xl md:text-2xl tracking-[0.3em] md:tracking-[0.3em] cursor-pointer transition-colors duration-300">
 					MCJ GARAGE
 				</h1>
-				<div className="group border border-[#ff6b00] rounded-full p-3 cursor-pointer transition-all duration-300 hover:bg-[#ff6b00] hover:scale-110 active:scale-95">
-					<FaMotorcycle className="text-white text-xl transition-colors duration-300"/>
-				</div>
+				<a href="/" className="group">
+					<div className="group border border-[#ff6b00] rounded-full p-3 cursor-pointer transition-all duration-300 hover:bg-[#ff6b00] hover:scale-110 active:scale-95">
+						<FaMotorcycle className="text-white text-xl transition-colors duration-300" />
+					</div>
+				</a>
 			</div>
 		</header>
 	);
