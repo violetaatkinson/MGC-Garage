@@ -5,6 +5,7 @@ const screensInfo = [
 		id: 1,
 		section: "Inventory",
 		img: "/src/assets/t5.jpeg",
+		alt:"Inventory",
 		href: "/inventory",
 		information: "Browse our collection of motorcycles",
 	},
@@ -12,6 +13,7 @@ const screensInfo = [
 		id: 2,
 		section: "Fixer Upper",
 		img: "/src/assets/fix.jpg",
+		alt:"Fixer Upper",
 		href: "/parts-request",
 		information: "Restore your old bike",
 	},
@@ -19,6 +21,7 @@ const screensInfo = [
 		id: 3,
 		section: "Schedule Service",
 		img: "/src/assets/a.jpg",
+		alt:"Schedule Service",
 		href: "/schedule-service",
 		information: "Expert repairs and maintenance ",
 	},
@@ -26,6 +29,7 @@ const screensInfo = [
 		id: 4,
 		section: "Parts Request",
 		img: "/src/assets/b.jpg",
+		alt:"Parts Request",
 		href: "/fixer-upper",
 		information: "Source genuine parts for your motorcycle",
 	},
@@ -33,6 +37,7 @@ const screensInfo = [
 		id: 5,
 		section: "Contact Us",
 		img: "/src/assets/t.jpeg",
+		alt:"Contact Us",
 		href: "/contact",
 		information: "Get in touch with our team",
 	},
@@ -43,19 +48,11 @@ const Screens = () => {
 		<div className="flex flex-col ">
 			{screensInfo.map((screen) => {
 				return (
-					<a
-						key={screen.id}
-						href={screen.href}
-						className=" relative group h-[400px] sm:h-[500px] md:h-[600px] flex items-center overflow-hidden"
-					>
-						<img
-							src={screen.img}
-							className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-						/>
+					<a key={screen.id} href={screen.href} className=" relative group h-[400px] sm:h-[500px] md:h-[600px] flex items-center overflow-hidden">
+						<img src={screen.img} alt={screen.alt} className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"/>
 						<div  className="absolute inset-0 bg-black/60 md:bg-black/70 md:group-hover:bg-black/50 transition-all duration-700"></div>
 						<div className="relative z-10 px-6 sm:px-10 md:px-16">
-							<h2
-								className="font-bebas font-bold text-white text-3xl sm:text-4xl md:text-5xl tracking-[0.1em] uppercase transition-colors duration-300 md:group-hover:text-orange-500">
+							<h2 className="font-bebas font-bold text-white text-3xl sm:text-4xl md:text-5xl tracking-[0.1em] uppercase transition-colors duration-300 md:group-hover:text-orange-500">
 								{screen.section}
 							</h2>
 							<p className="text-gray-400 mt-6 sm:text-base md:text-xl tracking-wider">
