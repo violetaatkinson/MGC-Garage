@@ -1,5 +1,5 @@
 import Footer from "./components/Footer"
-import Screens from "./components/Screens"
+import ScreenContainer from "./components/ScreenContainer"
 import Navbar from "./components/Navbar"
 
 
@@ -7,7 +7,7 @@ function App() {
   return (
     <div>
       <Navbar/>
-      <Screens/>
+      <ScreenContainer/>
       <Footer/>
     </div>
   )
