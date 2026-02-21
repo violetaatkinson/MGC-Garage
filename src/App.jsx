@@ -1,6 +1,6 @@
-import Footer from "./components/Footer"
-import ScreenContainer from "./components/ScreenContainer"
 import Navbar from "./components/Navbar"
+import ScreenContainer from "./components/ScreenContainer"
+import Footer from "./components/Footer"
 
 
 function App() {
