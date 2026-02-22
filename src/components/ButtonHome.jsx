@@ -1,0 +1,16 @@
+import React from "react";
+import { Link } from "react-router-dom";
+
+const ButtonHome = () => {
+	return (
+		<Link to="/">
+			<div className="w-full px-6 md:px-12 lg:px-20">
+				<button className="text-[#ff6b00] text-lg tracking-[0.1em]  cursor-pointer py-4 transition-all duration-300 font-semibold hover:text-orange-600">
+					← Back Home
+				</button>
+			</div>
+		</Link>
+	);
+};
+
+export default ButtonHome;
