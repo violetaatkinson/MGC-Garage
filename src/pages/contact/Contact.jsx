@@ -1,5 +1,5 @@
 import React from "react";
-import ButtonHome from "./ButtonHome";
+import ButtonHome from "../../components/ButtonHome";
 
 const Contact = ({ details, swalStyles, formData, handleChange, handleSubmit }) => {
 
