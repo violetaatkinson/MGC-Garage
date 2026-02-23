@@ -14,7 +14,7 @@ const screensInfo = [
 		id: 2,
 		section: "Fixer Upper",
 		img: "/src/assets/fix.jpg",
-		href: "/parts-request",
+		href: "/fixer-upper",
 		information: "Restore your old bike",
 	},
 	{
@@ -28,7 +28,7 @@ const screensInfo = [
 		id: 4,
 		section: "Parts Request",
 		img: "/src/assets/b.jpg",
-		href: "/fixer-upper",
+		href: "/parts-request ",
 		information: "Source genuine parts for your motorcycle",
 	},
 	{

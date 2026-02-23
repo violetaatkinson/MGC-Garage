@@ -1,9 +1,10 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Screen = ({ screen }) => {
 	return (
 		<div>
-			<a href={screen.href} className="relative group h-[400px] sm:h-[500px] md:h-[600px] flex items-center overflow-hidden focus:outline-none">
+			<Link to={screen.href} className="relative group h-[400px] sm:h-[500px] md:h-[600px] flex items-center overflow-hidden focus:outline-none">
 				<img src={screen.img} alt={screen.section} className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 group-active:scale-110 group-focus:scale-110"/>
 
 				<div className="absolute inset-0 bg-black/60 md:bg-black/70 transition-all duration-700 group-hover:bg-black/50 group-active:bg-black/50 group-focus:bg-black/50"></div>
@@ -21,7 +22,7 @@ const Screen = ({ screen }) => {
 						→
 					</span>
 				</div>
-			</a>
+			</Link>
 		</div>
 	);
 };

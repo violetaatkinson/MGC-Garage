@@ -1,12 +1,12 @@
 import React from "react";
+import ButtonHome from "./ButtonHome";
 
 const Contact = ({ details, swalStyles, formData, handleChange, handleSubmit }) => {
 
   return (
     <>
-
+      <ButtonHome/>
       <style dangerouslySetInnerHTML={{ __html: swalStyles }} />
-    
       <section className="bg-[#202020] text-gray-300 min-h-screen px-4 sm:px-6 py-12 sm:py-16">
         <div className="text-center mb-10 sm:mb-12">
           <h2 className="text-3xl sm:text-4xl font-bold text-white tracking-widest mb-4">
