@@ -9,10 +9,10 @@ const Contact = ({ details, swalStyles, formData, handleChange, handleSubmit }) 
       <style dangerouslySetInnerHTML={{ __html: swalStyles }} />
       <section className="bg-[#202020] text-gray-300 min-h-screen px-4 sm:px-6 py-12 sm:py-16">
         <div className="text-center mb-10 sm:mb-12">
-          <h2 className="text-3xl sm:text-4xl font-bold text-white tracking-widest mb-4">
+          <h2 className="text-3xl sm:text-4xl hover:text-orange-500 font-bold text-white tracking-widest mb-4">
             CONTACT US
           </h2>
-          <p className="text-[#999] tracking-widest font-light text-sm sm:text-base">
+          <p className="text-[#999] tracking-widest font-light text-normal sm:text-base">
             Premium motorcycles, expert service, and genuine parts — all in one place.
           </p>
         </div>
@@ -23,7 +23,7 @@ const Contact = ({ details, swalStyles, formData, handleChange, handleSubmit }) 
             const Icon = detail.icon;
             
             return (
-              <div key={index} className="flex gap-6 bg-zinc-900 p-6 border border-zinc-800 hover:border-orange-500 transition">
+              <div key={index} className="flex gap-6 bg-zinc-900 p-6 border border-zinc-800 hover:border-orange-500 transition rounded-sm">
                 <Icon className="text-orange-500 text-xl mt-1 shrink-0" />
                 <div>
                   <h4 className="text-white font-semibold mb-2 uppercase text-sm tracking-widest">
@@ -41,7 +41,7 @@ const Contact = ({ details, swalStyles, formData, handleChange, handleSubmit }) 
           })}
         </div>
 
-        <div className="max-w-5xl mx-auto mt-12 bg-zinc-900 p-6 sm:p-8 border border-zinc-800">
+        <div className="max-w-5xl mx-auto mt-12 bg-zinc-900 p-6 sm:p-8 border border-zinc-800 rounded-xl ">
           <form onSubmit={handleSubmit} className="space-y-6">
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -54,7 +54,7 @@ const Contact = ({ details, swalStyles, formData, handleChange, handleSubmit }) 
                   onChange={handleChange}
                   placeholder="John Doe"
                   required
-                  className="w-full bg-[#1F1F22] border border-zinc-700 p-3 outline-none focus:border-orange-500 text-gray-300 placeholder-zinc-600 caret-orange-500 transition"
+                  className="w-full bg-[#1F1F22] border border-zinc-700 p-3 outline-none focus:border-orange-500 text-gray-300 placeholder-zinc-600 caret-orange-500 transition rounded-sm"
                 />
               </div>
 
@@ -67,7 +67,7 @@ const Contact = ({ details, swalStyles, formData, handleChange, handleSubmit }) 
                   onChange={handleChange}
                   placeholder="you@example.com"
                   required
-                  className="w-full bg-[#1F1F22] border border-zinc-700 p-3 outline-none focus:border-orange-500 text-gray-300 placeholder-zinc-600 caret-orange-500 transition"
+                  className="w-full bg-[#1F1F22] border border-zinc-700 p-3 outline-none focus:border-orange-500 text-gray-300 placeholder-zinc-600 caret-orange-500 transition rounded-sm"
                 />
               </div>
             </div>
@@ -80,7 +80,7 @@ const Contact = ({ details, swalStyles, formData, handleChange, handleSubmit }) 
                 value={formData.phone}
                 onChange={handleChange}
                 placeholder="(555) 000-0000"
-                className="w-full bg-[#1F1F22] border border-zinc-700 p-3 outline-none focus:border-orange-500 text-gray-300 placeholder-zinc-600 caret-orange-500 transition"
+                className="w-full bg-[#1F1F22] border border-zinc-700 p-3 outline-none focus:border-orange-500 text-gray-300 placeholder-zinc-600 caret-orange-500 transition rounded-sm"
               />
             </div>
 
@@ -93,11 +93,11 @@ const Contact = ({ details, swalStyles, formData, handleChange, handleSubmit }) 
                 placeholder="Tell us about your motorcycle or what you need..."
                 required
                 rows="5"
-                className="w-full bg-[#1F1F22] border border-zinc-700 p-3 outline-none focus:border-orange-500 text-gray-300 placeholder-zinc-600 caret-orange-500 transition resize-none"
+                className="w-full bg-[#1F1F22] border border-zinc-700 p-3 outline-none focus:border-orange-500 text-gray-300 placeholder-zinc-600 caret-orange-500 transition resize-none rounded-sm"
               />
             </div>
 
-            <button type="submit" className="w-full bg-orange-500 hover:bg-orange-600 active:bg-orange-700 text-white py-4 tracking-widest font-semibold transition">
+            <button type="submit" className="w-full bg-orange-500 hover:bg-orange-600 active:bg-orange-700 text-white py-4 tracking-widest font-semibold transition mb-3 rounded-md">
               SEND MESSAGE
             </button>
 

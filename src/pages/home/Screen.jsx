@@ -14,7 +14,7 @@ const Screen = ({ screen }) => {
 						{screen.section}
 					</h2>
 
-					<p className="text-gray-400 mt-6 sm:text-base md:text-xl tracking-wider">
+					<p className="text-gray-400 mt-6 sm:text-normal md:text-xl tracking-wider">
 						{screen.information}
 					</p>
 

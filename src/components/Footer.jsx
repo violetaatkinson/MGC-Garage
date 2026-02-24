@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 
 const links = [
 	{ name: "Inventory", href: "/inventory" },
-	{ name: "Parts Request", href: "/parts-request" },
-	{ name: "Schedule Service", href: "/schedule-service" },
 	{ name: "Fixer Upper", href: "/fixer-upper" },
+	{ name: "Schedule Service", href: "/schedule-service" },
+	{ name: "Parts Request", href: "/parts-request" },
 	{ name: "Contact Us", href: "/contact" },
 ];
 
