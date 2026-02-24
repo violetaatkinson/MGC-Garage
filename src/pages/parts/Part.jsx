@@ -1,23 +1,18 @@
 import React from "react";
 import ButtonHome from "../../components/ButtonHome";
+import HeaderPage from "../../components/HeaderPage";
 
 const Part = ({ partData, swalStyles , handleChange, handleSubmit }) => {
 	return (
 		<>
 		    <ButtonHome />
+			<HeaderPage
+        		title="PARTS REQUEST"
+       		 	subtitle="Need a specific part? Fill out the form and we'll source it for you."
+      		/>
             <style dangerouslySetInnerHTML={{ __html: swalStyles }} />
-			<section className="bg-[#202020] text-gray-300 min-h-screen px-4 sm:px-6 py-12 sm:py-16">
-				<div className="text-center mb-10 sm:mb-12">
-					<h2 className="text-3xl hover:text-orange-500 sm:text-4xl font-bold text-white tracking-widest mb-4">
-						PARTS REQUEST
-					</h2>
-
-					<p className="text-[#999] tracking-widest font-light text-normal sm:text-base">
-						Need a specific part? Fill out the form and we'll source it for you.
-					</p>
-				</div>
-
-				<div className="max-w-5xl mx-auto mt-12 bg-zinc-900 p-6 sm:p-8 border border-zinc-800 rounded-xl">
+			<section className="bg-[#202020] text-gray-300 py-12 sm:py-16">
+				<div className="max-w-5xl mx-auto  bg-zinc-900 p-6 sm:p-8 border border-zinc-800 rounded-xl">
 					<form onSubmit={handleSubmit} className="space-y-6">
 						<div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
 							<div>

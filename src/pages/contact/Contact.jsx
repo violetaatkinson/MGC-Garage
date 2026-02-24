@@ -1,23 +1,18 @@
 import React from "react";
 import ButtonHome from "../../components/ButtonHome";
+import HeaderPage from "../../components/HeaderPage";
 
 const Contact = ({ details, swalStyles, formData, handleChange, handleSubmit }) => {
 
   return (
     <>
       <ButtonHome/>
+      <HeaderPage
+        title="CONTACT US"
+        subtitle="Premium motorcycles, expert service, and genuine parts — all in one place."
+      />
       <style dangerouslySetInnerHTML={{ __html: swalStyles }} />
       <section className="bg-[#202020] text-gray-300 min-h-screen px-4 sm:px-6 py-12 sm:py-16">
-        <div className="text-center mb-10 sm:mb-12">
-          <h2 className="text-3xl sm:text-4xl hover:text-orange-500 font-bold text-white tracking-widest mb-4">
-            CONTACT US
-          </h2>
-          <p className="text-[#999] tracking-widest font-light text-normal sm:text-base">
-            Premium motorcycles, expert service, and genuine parts — all in one place.
-          </p>
-        </div>
-
-
         <div className="max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-2 gap-4">
           {details.map((detail, index) => {
             const Icon = detail.icon;
