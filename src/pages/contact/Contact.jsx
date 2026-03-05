@@ -92,7 +92,7 @@ const Contact = ({ details, swalStyles, formData, handleChange, handleSubmit }) 
               />
             </div>
 
-            <button type="submit" className="w-full  mt-3 bg-orange-500 hover:bg-orange-600 active:bg-orange-700 text-white py-4 tracking-widest font-semibold transition mb-3 rounded-md">
+            <button type="submit" className="group w-full flex items-center justify-center gap-3 border border-[#ff6b00] text-white py-4 tracking-widest font-semibold rounded-md transition-all duration-300 hover:bg-[#ff6b00] hover:scale-[1.02] active:scale-95 mt-10 mb-3">
               SEND MESSAGE
             </button>
 

@@ -66,7 +66,7 @@ const swalStyles = `
 `;
 
 const FixerContainer = () => {
-	const [fixFData, setfixFData] = useState(initialState );
+	const [fixFData, setfixFData] = useState( initialState );
 
 	const handleChange = (e) => {
 		const { name, value } = e.target;
