@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import logo from "../assets/logo.png";
 
 const links = [
 	{ name: "Inventory", href: "/inventory" },
@@ -30,9 +31,15 @@ const Footer = () => {
 					</nav>
 
 					<div className="mt-6 md:mt-8 border-t border-stone-700/70 pt-4 md:pt-6">
-						<h2 className="text-white font-semibold text-2xl md:text-3xl tracking-[0.15em] md:tracking-[0.2em]">
-							MCJ GARAGE
-						</h2>
+						<div className=" flex justify-center mt-4 ">
+							<Link to="/">
+								<img
+									src={logo}
+									alt="MCJ Garage"
+									className="h-14 sm:h-16 md:h-18 w-auto object-contain opacity-90 hover:opacity-100 transition-opacity duration-300"
+								/>
+							</Link>
+						</div>
 
 						<p className="mt-6 text-xs md:text-sm tracking-[0.2em] md:tracking-[0.3em] text-stone-500 uppercase leading-7 md:leading-normal">
 							Premium motorcycles <br className="md:hidden" />
