@@ -11,7 +11,7 @@ const Part = ({ partData, swalStyles , handleChange, handleSubmit }) => {
        		 	subtitle="Need a specific part? Fill out the form and we'll source it for you."
       		/>
             <style dangerouslySetInnerHTML={{ __html: swalStyles }} />
-			<section className="bg-[#202020] text-gray-300 py-8 sm:py-16">
+			<section className="bg-[#202020] text-gray-300 py-8 sm:py-16 px-4 sm:px-6 lg:px-8">
 				<div className="max-w-5xl mx-auto  bg-zinc-900 p-6 sm:p-8 border border-zinc-800 rounded-xl">
 					<form onSubmit={handleSubmit} className="space-y-6">
 						<div className="grid grid-cols-1 sm:grid-cols-2 gap-6">

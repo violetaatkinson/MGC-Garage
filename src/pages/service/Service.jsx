@@ -50,7 +50,7 @@ const Service = ({services, contactCustomer, swalStyles, scheduleService, handle
 												{service.type.toUpperCase()}
 											</h3>
 
-											<p className="text-gray-400 text-sm mt-1">
+											<p className="text-gray-500 text-sm mt-1">
 												{service.detail}
 											</p>
 										</div>
