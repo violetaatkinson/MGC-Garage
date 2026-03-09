@@ -137,7 +137,7 @@ const Part = ({ partData, swalStyles , handleChange, handleSubmit }) => {
 							</div>
 						</div>
 
-						<button className="group w-full flex items-center justify-center gap-3 border border-[#ff6b00] text-white py-4 tracking-widest font-semibold rounded-md transition-all duration-300 hover:bg-[#ff6b00] hover:scale-[1.02] active:scale-95 mt-5 mb-3 ">
+						<button className="group w-full flex items-center justify-center gap-3 border border-[#ff6b00] text-white py-4 tracking-widest rounded-md transition-all duration-300 hover:bg-[#ff6b00] hover:scale-[1.02] active:scale-95 mt-5 mb-3 ">
 							SUBMIT REQUEST
 						</button>
 					</form>

@@ -43,7 +43,7 @@ const Motos = ({ motos }) => {
 									${moto.cost.toLocaleString()}
 								</p>
 
-								<button className="mt-6 w-full border border-orange-500 text-orange-500 py-3 tracking-widest font-semibold rounded-md transition hover:bg-orange-500 hover:text-white">
+								<button className="mt-6 w-full border border-orange-500 text-orange-500 py-3 tracking-widest rounded-md transition hover:bg-orange-500 hover:text-white">
 									VIEW DETAILS →
 								</button>
 							</div>

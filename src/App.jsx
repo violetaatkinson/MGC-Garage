@@ -8,6 +8,7 @@ import FixerContainer from "./pages/fix/FixerContainer";
 import ServiceContainer from "./pages/service/serviceContainer";
 import PartContainer from "./pages/parts/PartContainer";
 import ContactContainer from "./pages/contact/ContactContainer"
+import NotFound from "./components/NotFound";
 import Footer from "./components/Footer"
 
 function App() {
@@ -24,6 +25,8 @@ function App() {
         <Route path="/parts-request" element={<PartContainer />} />
         <Route path="/contact" element={<ContactContainer />} />
           {/* Define una ruta individual / si la URL es /contact / mostrá este componente  a renderizar */}
+
+        <Route path="/*" element={<NotFound />} />
 
       </Routes>
       <Footer/>
