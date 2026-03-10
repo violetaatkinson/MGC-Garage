@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import HeaderPage from "../../components/HeaderPage";
 import ButtonHome from "../../components/ButtonHome";
 
@@ -7,13 +8,13 @@ const Motos = ({ motos }) => {
 		<>
 			<ButtonHome />
 			<HeaderPage
-        		title="OUR MOTORCYCLES"
-        		subtitle="Browse our collection of vintage motorcycles — original classics, restored legends, and unique custom builds."
-      		/>
+				title="OUR MOTORCYCLES"
+				subtitle="Browse our collection of vintage motorcycles — original classics, restored legends, and unique custom builds."
+			/>
 
 			<section className="bg-[#202020] text-gray-300 px-4 sm:px-6 py-12 sm:py-16">
 				<div className="max-w-6xl mx-auto grid sm:grid-cols-2 lg:grid-cols-3 gap-10">
-					{motos.map((moto) => (
+					{motos?.map((moto) => (
 						<div
 							key={moto.id}
 							className="bg-zinc-900 border border-zinc-800 rounded-lg overflow-hidden hover:border-orange-500 transition"
@@ -40,12 +41,13 @@ const Motos = ({ motos }) => {
 								</p>
 
 								<p className="text-orange-500 text-2xl font-bold mt-4">
-									${moto.cost.toLocaleString()}
+									${Number(moto.cost).toLocaleString()}
 								</p>
-
-								<button className="mt-6 w-full border border-orange-500 text-orange-500 py-3 tracking-widest rounded-md transition hover:bg-orange-500 hover:text-white">
-									VIEW DETAILS →
-								</button>
+								<Link to={`/moto/${moto.id}`}>
+									<button className="mt-6 w-full border border-orange-500 text-orange-500 py-3 tracking-widest rounded-md transition hover:bg-orange-500 hover:text-white">
+										VIEW DETAILS →
+									</button>
+								</Link>
 							</div>
 						</div>
 					))}

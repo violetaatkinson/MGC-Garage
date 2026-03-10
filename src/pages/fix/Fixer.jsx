@@ -25,7 +25,7 @@ const Fixer = ({ motoInfo, contactInfo, swalStyles, fixFData, handleChange, hand
 			<HeaderPage
 				title="FIXER UPPER"
 				subtitle={
-					<>
+					<div>
 						<p>
 							Got an old bike? Bring it in — we'll restore it or give you
 							trade-in value toward a new ride.
@@ -34,7 +34,7 @@ const Fixer = ({ motoInfo, contactInfo, swalStyles, fixFData, handleChange, hand
 							Fill out the form below and we'll get back to you with an
 							evaluation.
 						</p>
-					</>
+					</div>
 				}
 			/>
 

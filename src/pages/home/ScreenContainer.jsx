@@ -7,7 +7,7 @@ const screensInfo = [
 		id: 1,
 		section: "Inventory",
 		img: "/src/assets/t5.jpeg",
-		href: "/inventory",
+		href: "/motos",
 		information: "Browse our collection of motorcycles",
 	},
 	{

@@ -16,7 +16,7 @@ const NotFound = () => {
 				<h1 className="text-white text-4xl md:text-6xl font-light tracking-[0.2em] uppercase">
 					Page Not Found
 				</h1>
-				<p className="mt-6 text-stone-300 text-sm md:text-base tracking-[0.15em] leading-relaxed">
+				<p className="mt-6 text-stone-300 text-base md:text-base tracking-[0.15em] leading-relaxed">
 					The road you're looking for doesn't exist. But you can still explore
 					our premium motorcycles or schedule expert service.
 				</p>
@@ -30,8 +30,8 @@ const NotFound = () => {
 					</Link>
 
 			
-					<Link to="/inventory" className="w-64 sm:w-full">
-						<button className="w-full border border-[#ff6b00] text-white py-4 tracking-widest  rounded-md transition-all duration-300 hover:bg-stone-800 hover:text-[#ff6b00] hover:border-[#ff6b00] hover:scale-[1.02] active:scale-95">
+					<Link to="/motos" className="w-64 sm:w-full">
+						<button className="w-full border border-[#ff6b00] text-white py-4 tracking-widest  rounded-md transition-all duration-300 hover:bg-[#ff6b00] hover:text-white hover:scale-[1.02] active:scale-95">
 							VIEW INVENTORY
 						</button>
 					</Link>

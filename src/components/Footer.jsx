@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import logo from "../assets/logo.png";
 
 const links = [
-	{ name: "Inventory", href: "/inventory" },
+	{ name: "Inventory", href: "/motos" },
 	{ name: "Fixer Upper", href: "/fixer-upper" },
 	{ name: "Schedule Service", href: "/schedule-service" },
 	{ name: "Parts Request", href: "/parts-request" },
