@@ -12,7 +12,7 @@ const Navbar = () => {
           <img
             src={logo}
             alt="MCJ Garage"
-            className="h-14 sm:h-16 md:h-18 w-auto object-contain transition-transform duration-300 hover:scale-105"
+            className="h-12 sm:h-14 md:h-16 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity duration-300 hover:scale-105"
           />
         </Link>
 
