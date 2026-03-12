@@ -8,7 +8,7 @@ import { FaMotorcycle } from "react-icons/fa";
 const inputClass =
 	"w-full bg-[#1F1F22] border border-zinc-700 p-3 focus:border-orange-500 outline-none transition text-gray-300 placeholder-zinc-600 caret-orange-500";
 
-const Service = ({services, contactCustomer, swalStyles, scheduleService, handleChange, handleSubmit, handleServiceToggle, total}) => {
+const Service = ({services, contactCustomer, swalStyles, scheduleService, handleChange, handleSubmit, handleServiceToggle, total, handleAddServices}) => {
 	return (
 		<>
 			<ButtonHome />
@@ -97,6 +97,7 @@ const Service = ({services, contactCustomer, swalStyles, scheduleService, handle
 
 						<button
 							type="submit"
+							onClick={handleAddServices}
 							className="group w-full flex items-center justify-center gap-3 border border-[#ff6b00] text-white py-4 tracking-widest rounded-md transition-all duration-300 hover:bg-[#ff6b00] hover:scale-[1.02] active:scale-95 mt-10 mb-3"
 						>
 							ADD SERVICES TO CART

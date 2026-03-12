@@ -1,12 +1,22 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { FaMotorcycle } from "react-icons/fa";
+import { CartContext } from "../../context/CartContext";
 import BackMotos from "../../components/BackMotos";
 
-const MotoDetail = ({moto}) => {
+const MotoDetail = ({ moto }) => {
+	const { addToCart } = useContext(CartContext);
+
+	const handleAdd = () => {
+		addToCart({
+			...moto,
+			category: "product",
+		});
+	};
+
 	return (
 		<>
-      <BackMotos/>
+			<BackMotos />
 			<section className="bg-[#202020] text-gray-300 px-4 sm:px-6 py-12 sm:py-16">
 				<div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-start">
 					<div>
@@ -50,7 +60,10 @@ const MotoDetail = ({moto}) => {
 
 						<div className="mt-12 flex flex-col sm:flex-row gap-4">
 							<Link to="/cart" className="w-full">
-								<button className="group w-full flex items-center justify-center gap-3 border border-[#ff6b00] text-white py-4 tracking-widest font-semibold rounded-md transition-all duration-300 hover:bg-[#ff6b00] hover:scale-[1.02] active:scale-95">
+								<button
+									onClick={handleAdd}
+									className="group w-full flex items-center justify-center gap-3 border border-[#ff6b00] text-white py-4 tracking-widest font-semibold rounded-md transition-all duration-300 hover:bg-[#ff6b00] hover:scale-[1.02] active:scale-95"
+								>
 									ADD TO CART
 									<FaMotorcycle className="text-xl transition-transform duration-300 group-hover:translate-x-1" />
 								</button>

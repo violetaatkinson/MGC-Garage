@@ -1,5 +1,4 @@
 import React from "react";
-//import { useState, useEffect } from "react";
 import ScreenList from "./ScreenList";
 
 const screensInfo = [
@@ -41,22 +40,7 @@ const screensInfo = [
 ];
 
 const ScreenContainer = () => {
-	/* Ejemplo de como usar UseEffect (+ con APIS) y UseState
 
-	const [screens, SetScreens] = useState([]);
-
-	useEffect(() => {
-		const getScreens = () =>
-			new Promise((resolve) => {
-				resolve(screensInfo);
-			});
-
-		getScreens()
-			.then((res) => SetScreens(res))
-			.catch((err) => console.log(err));
-	}, []);
-	
-	*/ // creo la prop screen y le paso el array screensInfo screens: screensInfo y lo envía a ScreenList
 
 	return <ScreenList screens={screensInfo} />;
 };

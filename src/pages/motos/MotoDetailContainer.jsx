@@ -1,6 +1,5 @@
-import React from "react";
-import { useParams, Link } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import React, { useEffect, useState } from "react";
 import MotoDetail from "./MotoDetail";
 
 const MotoDetailContainer = () => {
@@ -9,9 +8,7 @@ const MotoDetailContainer = () => {
 
 	useEffect(() => {
 		const getMoto = async () => {
-			const res = await fetch(
-				`https://69ac7e879ca639a5217f0cec.mockapi.io/motosmcj/motos/${id}`,
-			);
+			const res = await fetch(`https://69ac7e879ca639a5217f0cec.mockapi.io/motosmcj/motos/${id}`);
 			const data = await res.json();
 			setMoto(data);
 		};

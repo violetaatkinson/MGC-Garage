@@ -1,7 +1,7 @@
 import React from "react";
-import { FaMotorcycle } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import logo from "../assets/logo.png";
+import CartWidget from "./CartWidget";
 
 const Navbar = () => {
   return (
@@ -16,11 +16,8 @@ const Navbar = () => {
           />
         </Link>
 
-        <Link to="/cart">
-          <div className="border border-[#ff6b00] rounded-full h-12 sm:h-14 md:h-16 w-12 sm:w-14 md:w-16 flex items-center justify-center cursor-pointer transition-all duration-300 hover:bg-[#ff6b00] hover:scale-105 active:scale-95">
-            <FaMotorcycle className="text-white text-lg sm:text-xl md:text-2xl" />
-          </div>
-        </Link>
+        <CartWidget />
+
       </div>
     </header>
   );

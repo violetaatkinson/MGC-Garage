@@ -1,6 +1,6 @@
 import Swal from "sweetalert2";
 import Motos from "./Motos";
-import { useEffect, useState } from "react";
+import React,{ useEffect, useState } from "react";
 
 const MotosContainer = () => {
 	

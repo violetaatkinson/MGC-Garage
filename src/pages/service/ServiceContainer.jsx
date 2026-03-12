@@ -1,7 +1,7 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState, useContext } from "react";
 import Swal from "sweetalert2";
 import Service from "./Service";
+import { CartContext } from "../../context/CartContext";
 
 const services = [
 	{
@@ -100,6 +100,17 @@ const swalStyles = `
 const ServiceContainer = () => {
 	const [scheduleService, setScheduleService] = useState(initialState);
 
+	const { addToCart } = useContext(CartContext);
+
+	const handleAddServices = () => {
+		scheduleService.selectedServices.forEach((service) => {
+			addToCart({
+				...service,
+				category: "service",
+			});
+		});
+	};
+
 	const handleChange = (e) => {
 		const { name, value } = e.target;
 
@@ -124,38 +135,40 @@ const ServiceContainer = () => {
 	};
 
 	const handleServiceToggle = (service) => {
-        // ↑ Recibe el objeto service completo
-		setScheduleService((prev) => { // prev es el estado anterior
-             //   Por cada elemento (s) del array, compara s.id con service.id, si encuentra 1 devuelve el obj
+		// ↑ Recibe el objeto service completo
+		setScheduleService((prev) => {
+			// prev es el estado anterior
+			//   Por cada elemento (s) del array, compara s.id con service.id, si encuentra 1 devuelve el obj
 			const exists = prev.selectedServices.find((s) => s.id === service.id);
 
-			if (exists) { // ↑ Si exists tiene valor (el servicio YA estaba seleccionado) , lo sacamos del array
+			if (exists) {
+				// ↑ Si exists tiene valor (el servicio YA estaba seleccionado) , lo sacamos del array
 				return {
 					...prev,
 					selectedServices: prev.selectedServices.filter(
-                        // ↑ .filter() crea un NUEVO array con solo los elementos que cumplen la condición
+						// ↑ .filter() crea un NUEVO array con solo los elementos que cumplen la condición
 						(s) => s.id !== service.id,
-                        //   s.id !== service.id → "quedáte con todos EXCEPTO el que tiene este id"
+						//   s.id !== service.id → "quedáte con todos EXCEPTO el que tiene este id"
 					),
 				};
 			}
 
-            // ↑ Si exists es undefined (el servicio NO estaba seleccionado)
-            //   → lo AGREGAMOS al array
+			// ↑ Si exists es undefined (el servicio NO estaba seleccionado)
+			//   → lo AGREGAMOS al array
 			return {
 				...prev,
 				selectedServices: [...prev.selectedServices, service],
-                // ↑ Spread del array anterior + el nuevo servicio al final
+				// ↑ Spread del array anterior + el nuevo servicio al final
 			};
 		});
 	};
 
-     // el array de servicios elegidos / llamamos reduce() sobre ese array
+	// el array de servicios elegidos / llamamos reduce() sobre ese array
 	const total = scheduleService.selectedServices.reduce((acc, service) => {
 		return acc + Number(service.cost.replace("$", ""));
-	}, 0); 
-    // acc → el acumulador, empieza en 0
-    // service → el elemento actual del array en cada vuelta
+	}, 0);
+	// acc → el acumulador, empieza en 0
+	// service → el elemento actual del array en cada vuelta
 
 	return (
 		<div>
@@ -167,7 +180,8 @@ const ServiceContainer = () => {
 				handleChange={handleChange}
 				handleSubmit={handleSubmit}
 				handleServiceToggle={handleServiceToggle}
-                total={total}
+				total={total}
+				handleAddServices={handleAddServices}
 			/>
 		</div>
 	);
