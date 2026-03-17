@@ -101,7 +101,7 @@ const Service = ({services, contactCustomer, swalStyles, scheduleService, handle
 							className="group w-full flex items-center justify-center gap-3 border border-[#ff6b00] text-white py-4 tracking-widest rounded-md transition-all duration-300 hover:bg-[#ff6b00] hover:scale-[1.02] active:scale-95 mt-10 mb-3"
 						>
 							ADD SERVICES TO CART
-							<FaMotorcycle className="text-white text-xl transition-transform duration-300 group-hover:translate-x-1" />
+							<FaTools className="text-white text-lg transition-transform duration-500 group-hover:rotate-45 group-hover:scale-110" />
 						</button>
 					</div>
 				</form>

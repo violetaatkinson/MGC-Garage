@@ -1,13 +1,42 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
-import { CartContext } from "../context/CartContext";
-import CartItem from "./CartItem";
-import ButtonHome from "../components/ButtonHome";
-import HeaderPage from "../components/HeaderPage";
-import j from "../assets/j.jpg";
+import { Link, useNavigate } from "react-router-dom";
+import { FaComments } from "react-icons/fa";
+import Swal from "sweetalert2";
+import { CartContext } from "../../context/CartContext";
+import CartItem from "../cart/CartItem";
+import ButtonHome from "../../components/ButtonHome";
+import HeaderPage from "../../components/HeaderPage";
+import j from "../../assets/j.jpg";
 
 const Cart = () => {
 	const { cart, removeItem, clearCart, totalPrice } = useContext(CartContext);
+
+	const navigate = useNavigate(); 
+
+	const sendRequest = () => {
+        Swal.fire({
+            title: "READY TO BUY ?",
+            html: `
+                <p style="color:#a1a1aa; font-size:13px; letter-spacing:0.15em; margin-bottom:16px">
+                    You'll be redirected to leave your contact info and we'll reach out via WhatsApp.
+                </p>
+                <p style="color:#ff6b00; font-size:18px; font-weight:bold; letter-spacing:0.1em">
+                    Total: $${(totalPrice * 1.07).toLocaleString()}
+                </p>
+            `,
+            background: "#18181b",
+            color: "#fff",
+            confirmButtonText: "YES, CONTINUE →",
+            cancelButtonText: "GO BACK",
+            showCancelButton: true,
+            confirmButtonColor: "#ff6b00",
+            cancelButtonColor: "#3f3f46",
+        }).then((result) => {
+            if (result.isConfirmed) {
+                navigate("/contact", { state: { cart, totalPrice } });
+            }
+        });
+    };
 
 	if (cart.length === 0) {
 		return (
@@ -24,8 +53,9 @@ const Cart = () => {
 						Your Cart is Empty
 					</h1>
 					<p className="mt-6 text-stone-400 text-sm tracking-[0.2em] leading-loose">
-						Looks like you haven't added anything yet. <br className="hidden sm:block"></br>Browse our motorcycles or
-						book a service.
+						Looks like you haven't added anything yet.{" "}
+						<br className="hidden sm:block"></br>Browse our motorcycles or book
+						a service.
 					</p>
 
 					<div className="mt-10 flex flex-col sm:flex-row gap-5 sm:gap-8 justify-center items-center w-full mx-auto">
@@ -85,8 +115,12 @@ const Cart = () => {
 					</div>
 
 					<div className="flex flex-col sm:flex-row mt-6 gap-4">
-						<button className="flex-1 bg-orange-500 hover:bg-orange-600 py-4 rounded-md text-white font-semibold text-sm tracking-widest uppercase transition-all duration-300 hover:scale-[1.02] active:scale-95">
-							PROCEED TO CHECKOUT →
+						<button
+							  onClick={sendRequest}
+							 className="group flex-1 bg-orange-500 hover:bg-orange-600 py-4 rounded-md text-white font-semibold text-sm tracking-widest uppercase transition-all duration-300 hover:scale-[1.02] active:scale-95 flex items-center justify-center gap-2">
+							
+							CHAT TO BUY
+							<FaComments className="text-white text-lg transition-transform duration-300 group-hover:-translate-y-1 group-hover:scale-110" />
 						</button>
 						<button
 							onClick={clearCart}

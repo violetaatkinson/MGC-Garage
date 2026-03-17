@@ -10,7 +10,7 @@ import ContactContainer from "./pages/contact/ContactContainer"
 import MotoDetailContainer from './pages/motos/MotoDetailContainer'
 
 import Navbar from "./components/Navbar"
-import Cart from './components/Cart'
+import Cart from './pages/cart/Cart'
 import NotFound from "./components/NotFound";
 import Footer from "./components/Footer"
 

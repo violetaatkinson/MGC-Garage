@@ -2,7 +2,7 @@ import React from "react";
 import { useContext } from "react";
 import { FaMotorcycle } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import { CartContext } from "../context/CartContext";
+import { CartContext } from "../../context/CartContext";
 
 const CartWidget = () => {
 	const { cart } = useContext(CartContext);

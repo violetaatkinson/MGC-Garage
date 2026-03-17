@@ -1,35 +1,32 @@
-import React, { useState } from "react";
-import { FaMapMarkerAlt, FaPhoneAlt, FaEnvelope, FaClock } from "react-icons/fa";
+import React, { useState, useEffect, useContext } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import { FaMapMarkerAlt, FaPhoneAlt, FaEnvelope, FaClock,} from "react-icons/fa";
+import { collection, addDoc, serverTimestamp } from "firebase/firestore";
+import { db } from "../../firebase/firebaseConfig";
+import { CartContext } from "../../context/CartContext";
 import Swal from "sweetalert2";
 import Contact from "./Contact";
 
-const details = [
-  {
-    section: "Location",
-    info: ["123 Racing Boulevard,", "Los Angeles, CA 90001"],
-    icon: FaMapMarkerAlt,
-  },
-  {
-    section: "Hours",
-    info: [
-      "Monday - Friday: 3:00 PM - 6:00 PM",
-      "Saturday: 10:00 AM - 4:00 PM",
-      "Sunday: Closed",
-    ],
-    icon: FaClock,
-  },
-  {
-    section: "Email",
-    info: ["contact@mcjgarage.com"],
-    icon: FaEnvelope,
-  },
-  {
-    section: "Phone",
-    info: ["(555) 123-4567"],
-    icon: FaPhoneAlt,
-  },
-];
+const WHATSAPP_NUMBER = "18055745916";
 
+const details = [
+	{
+		section: "Location",
+		info: ["123 Racing Boulevard,", "Los Angeles, CA 90001"],
+		icon: FaMapMarkerAlt,
+	},
+	{
+		section: "Hours",
+		info: [
+			"Monday - Friday: 3:00 PM - 6:00 PM",
+			"Saturday: 10:00 AM - 4:00 PM",
+			"Sunday: Closed",
+		],
+		icon: FaClock,
+	},
+	{ section: "Email", info: ["contact@mcjgarage.com"], icon: FaEnvelope },
+	{ section: "Phone", info: ["(555) 123-4567"], icon: FaPhoneAlt },
+];
 
 const swalStyles = `
   .swal2-popup {
@@ -66,48 +63,125 @@ const swalStyles = `
 `;
 
 const ContactContainer = () => {
+	const location = useLocation();
+	const navigate = useNavigate();
+	const { clearCart } = useContext(CartContext);
 
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    message: "",
-  });
+	const cartData = location.state?.cart || [];
+	const cartTotal = location.state?.totalPrice || 0;
+	const fromCart = cartData.length > 0;
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
+	const [done, setDone] = useState(false);
 
-    setFormData((prev) => ({
-      ...prev,      
-      [name]: value, // actualiza solo el campo que cambió
-    }));
-  };
+	const [formData, setFormData] = useState({
+		name: "",
+		email: "",
+		phone: "",
+		message: "",
+	});
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // cancela la recarga de página del navegador
+	useEffect(() => {
+		if (fromCart && !done) {
+			const itemsList = cartData
+				.map((item) =>
+					item.category === "service"
+						? `• ${item.type} ($${Number(item.cost).toLocaleString()})`
+						: `• ${item.brand} ${item.model} ${item.year} ($${Number(item.cost).toLocaleString()})`,
+				)
+				.join("\n");
 
-    Swal.fire({
-      title: "Message Sent!",
-      html: `We'll get back to you soon, <strong style="color:#d1d5db; font-weight:600; text-transform:capitalize">${formData.name}</strong>!`,
-      icon: "success",
-      showConfirmButton: false,
-      timer: 3000,
-      timerProgressBar: true,
-    });
+			setFormData((prev) => ({
+				...prev,
+				message: `Hi! I'm interested in the following:\n\n${itemsList}\n\nTotal: $${(cartTotal * 1.07).toLocaleString()}`,
+			}));
+		}
+	}, [done]);
 
-    setFormData({ name: "", email: "", phone: "", message: "" });
-  };
+	const handleChange = (e) => {
+		const { name, value } = e.target;
+		setFormData((prev) => ({ ...prev, [name]: value }));
+	};
 
-  return (
-    <Contact
-      details={details}
-      swalStyles={swalStyles}
-      formData={formData}
-      handleChange={handleChange}
-      handleSubmit={handleSubmit}
-    />
-  );
+	const handleSubmit = async (e) => {
+		e.preventDefault();
+
+		// 1 — WHATSAPP
+		const whatsappMessage = encodeURIComponent(
+			`*MCJ GARAGE INQUIRY*\n\n` +
+				`*Name:* ${formData.name}\n` +
+				`*Email:* ${formData.email}\n` +
+				`*Phone:* ${formData.phone || "Not provided"}\n\n` +
+				`*Message:*\n${formData.message}`,
+		);
+		window.open(
+			`https://wa.me/${WHATSAPP_NUMBER}?text=${whatsappMessage}`,
+			"_blank",
+		);
+
+
+		Swal.fire({
+			title: "MESSAGE SENT!",
+			html: `
+				<p style="color:#a1a1aa; font-size:13px; letter-spacing:0.15em; line-height:1.8">
+					Thank you, <strong style="color:#d1d5db">${formData.name}</strong>!<br/>
+					We'll reach out to you shortly via WhatsApp or email.
+				</p>
+			`,
+			icon: "success",
+			background: "#18181b",
+			color: "#fff",
+			confirmButtonText: "BACK TO HOME",
+			confirmButtonColor: "#ff6b00",
+		}).then(() => {
+			setDone(true);
+			if (fromCart) {
+				clearCart();
+				navigate("/");
+			} else {
+				setFormData({ name: "", email: "", phone: "", message: "" });
+			}
+		});
+
+		// 3 — FIRESTORE en segundo plano
+		try {
+			const order = {
+				buyer: {
+					name: formData.name,
+					email: formData.email,
+					phone: formData.phone || "Not provided",
+				},
+				items: fromCart
+					? cartData.map((item) => ({
+							id: item.id,
+							category: item.category,
+							cost: item.cost,
+							...(item.category === "service"
+								? { type: item.type, detail: item.detail }
+								: { brand: item.brand, model: item.model, year: item.year }),
+						}))
+					: [],
+				subtotal: cartTotal,
+				tax: parseFloat((cartTotal * 0.07).toFixed(2)),
+				total: parseFloat((cartTotal * 1.07).toFixed(2)),
+				message: formData.message,
+				date: serverTimestamp(),
+				status: "pending",
+			};
+			await addDoc(collection(db, "orders"), order);
+		} catch (error) {
+			console.error("Firestore error:", error);
+		}
+	};
+
+	return (
+		<Contact
+			details={details}
+			swalStyles={swalStyles}
+			formData={formData}
+			handleChange={handleChange}
+			handleSubmit={handleSubmit}
+		/>
+	);
 };
 
 export default ContactContainer;

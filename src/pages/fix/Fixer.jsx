@@ -1,15 +1,24 @@
 import React from "react";
 import ButtonHome from "../../components/ButtonHome";
 import HeaderPage from "../../components/HeaderPage";
+import { FaExchangeAlt } from "react-icons/fa";
 
 const inputClass =
 	"w-full bg-[#1F1F22] border border-zinc-700 p-3 focus:border-orange-500 outline-none transition text-gray-300 placeholder-zinc-600 caret-orange-500";
 
-const Fixer = ({ motoInfo, contactInfo, swalStyles, fixFData, handleChange, handleSubmit}) => {
+const Fixer = ({
+	motoInfo,
+	contactInfo,
+	swalStyles,
+	fixFData,
+	handleChange,
+	handleSubmit,
+}) => {
 	return (
 		<>
-			<style dangerouslySetInnerHTML={{
-				__html: `
+			<style
+				dangerouslySetInnerHTML={{
+					__html: `
 						${swalStyles}
 						select { -webkit-appearance: none; -moz-appearance: none; appearance: none; }
 						select option:hover, select option:focus, select option:checked {
@@ -46,7 +55,7 @@ const Fixer = ({ motoInfo, contactInfo, swalStyles, fixFData, handleChange, hand
 						</h3>
 
 						<div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
-						{/* slice(inicio, fin) corta el array y devuelve los elementos entre esas posiciones. [brand, model]  */}
+							{/* slice(inicio, fin) corta el array y devuelve los elementos entre esas posiciones. [brand, model]  */}
 							{motoInfo.slice(0, 2).map((field) => (
 								<div key={field.name}>
 									<label className="block text-sm mb-2 tracking-widest">
@@ -58,9 +67,7 @@ const Fixer = ({ motoInfo, contactInfo, swalStyles, fixFData, handleChange, hand
 										value={fixFData[field.name]}
 										onChange={handleChange}
 										required
-										placeholder={
-											field.name === "brand" ? "Honda" : "CBR600RR"
-										}
+										placeholder={field.name === "brand" ? "Honda" : "CBR600RR"}
 										className={inputClass}
 									/>
 								</div>
@@ -149,11 +156,13 @@ const Fixer = ({ motoInfo, contactInfo, swalStyles, fixFData, handleChange, hand
 								))}
 							</div>
 						</div>
+
 						<button
 							type="submit"
 							className="group w-full flex items-center justify-center gap-3 border border-[#ff6b00] text-white py-4 tracking-widest rounded-md transition-all duration-300 hover:bg-[#ff6b00] hover:scale-[1.02] active:scale-95 mt-10 mb-3"
 						>
 							SUBMIT TRADE-IN REQUEST
+							<FaExchangeAlt className="text-xl transition-transform duration-500 group-hover:rotate-180" />
 						</button>
 					</div>
 				</form>

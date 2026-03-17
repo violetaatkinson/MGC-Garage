@@ -1,16 +1,17 @@
 import React from "react";
 import ButtonHome from "../../components/ButtonHome";
 import HeaderPage from "../../components/HeaderPage";
+import { FaWrench } from "react-icons/fa";
 
-const Part = ({ partData, swalStyles , handleChange, handleSubmit }) => {
+const Part = ({ partData, swalStyles, handleChange, handleSubmit }) => {
 	return (
 		<>
-		    <ButtonHome />
+			<ButtonHome />
 			<HeaderPage
-        		title="PARTS REQUEST"
-       		 	subtitle="Need a specific part? Fill out the form and we'll source it for you."
-      		/>
-            <style dangerouslySetInnerHTML={{ __html: swalStyles }} />
+				title="PARTS REQUEST"
+				subtitle="Need a specific part? Fill out the form and we'll source it for you."
+			/>
+			<style dangerouslySetInnerHTML={{ __html: swalStyles }} />
 			<section className="bg-[#202020] text-gray-300 py-8 sm:py-16 px-4 sm:px-6 lg:px-8">
 				<div className="max-w-5xl mx-auto  bg-zinc-900 p-6 sm:p-8 border border-zinc-800 rounded-xl">
 					<form onSubmit={handleSubmit} className="space-y-6">
@@ -24,7 +25,7 @@ const Part = ({ partData, swalStyles , handleChange, handleSubmit }) => {
 									name="name"
 									value={partData.name}
 									onChange={handleChange}
-                                    required
+									required
 									placeholder="John Doe"
 									className="w-full bg-[#1F1F22] border border-zinc-700 p-3 focus:border-orange-500 outline-none rounded-sm"
 								/>
@@ -39,7 +40,7 @@ const Part = ({ partData, swalStyles , handleChange, handleSubmit }) => {
 									name="phone"
 									value={partData.phone}
 									onChange={handleChange}
-                                    required
+									required
 									placeholder="(555) 000-0000"
 									className="w-full bg-[#1F1F22] border border-zinc-700 p-3 focus:border-orange-500 outline-none rounded-sm"
 								/>
@@ -55,7 +56,7 @@ const Part = ({ partData, swalStyles , handleChange, handleSubmit }) => {
 								name="email"
 								value={partData.email}
 								onChange={handleChange}
-                                required
+								required
 								placeholder="you@example.com"
 								className="w-full bg-[#1F1F22] border border-zinc-700 p-3 focus:border-orange-500 outline-none rounded-sm"
 							/>
@@ -70,7 +71,7 @@ const Part = ({ partData, swalStyles , handleChange, handleSubmit }) => {
 								name="motorcycleM"
 								value={partData.motorcycleM}
 								onChange={handleChange}
-                                required
+								required
 								placeholder="2022 Kawasaki Ninja ZX-10R"
 								className="w-full bg-[#1F1F22] border border-zinc-700 p-3 focus:border-orange-500 outline-none rounded-sm"
 							/>
@@ -85,7 +86,7 @@ const Part = ({ partData, swalStyles , handleChange, handleSubmit }) => {
 								name="partNeeded"
 								value={partData.partNeeded}
 								onChange={handleChange}
-                                required
+								required
 								placeholder="Front brake caliper"
 								className="w-full bg-[#1F1F22] border border-zinc-700 p-3 focus:border-orange-500 outline-none rounded-sm"
 							/>
@@ -99,7 +100,7 @@ const Part = ({ partData, swalStyles , handleChange, handleSubmit }) => {
 								name="additionalD"
 								value={partData.additionalD}
 								onChange={handleChange}
-                                required
+								required
 								rows="4"
 								className="w-full bg-[#1F1F22] border border-zinc-700 p-3 focus:border-orange-500 outline-none resize-none rounded-sm"
 							/>
@@ -117,7 +118,7 @@ const Part = ({ partData, swalStyles , handleChange, handleSubmit }) => {
 										value="Pickup"
 										checked={partData.option === "Pickup"}
 										onChange={handleChange}
-                                        required
+										required
 										className="accent-orange-500"
 									/>
 									Pickup
@@ -129,7 +130,7 @@ const Part = ({ partData, swalStyles , handleChange, handleSubmit }) => {
 										value="Delivery"
 										checked={partData.option === "Delivery"}
 										onChange={handleChange}
-                                        required
+										required
 										className="accent-orange-500"
 									/>
 									Delivery
@@ -139,6 +140,7 @@ const Part = ({ partData, swalStyles , handleChange, handleSubmit }) => {
 
 						<button className="group w-full flex items-center justify-center gap-3 border border-[#ff6b00] text-white py-4 tracking-widest rounded-md transition-all duration-300 hover:bg-[#ff6b00] hover:scale-[1.02] active:scale-95 mt-5 mb-3 ">
 							SUBMIT REQUEST
+							<FaWrench className="text-xl transition-transform duration-500 group-hover:rotate-45" />
 						</button>
 					</form>
 				</div>
