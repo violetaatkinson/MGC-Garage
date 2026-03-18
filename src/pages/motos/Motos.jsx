@@ -37,7 +37,7 @@ const Motos = ({ motos }) => {
 								</h3>
 
 								<p className="text-gray-500 text-sm mt-2">
-									{moto.year} - {moto.engine}
+									 {moto.engine}
 								</p>
 
 								<p className="text-orange-500 text-2xl font-bold mt-4">
