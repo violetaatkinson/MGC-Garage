@@ -4,7 +4,7 @@
     src="./src/assets/screenshoot.png" 
     style="max-width: 580px; width: 100%; height: auto; margin: 20px 0;"
     />
-
+<br/>
   <p>
     <strong>MCJ Garage</strong> es una aplicación web de tipo <strong>e-commerce</strong> 
     desarrollada con React, orientada a la compra de motocicletas vintage, servicios de taller 
