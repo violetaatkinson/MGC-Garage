@@ -4,7 +4,8 @@ import MotoDetail from "./MotoDetail";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "../../firebase/db";
 
-const MOCKAPI_URL = "https://69ac7e879ca639a5217f0cec.mockapi.io/motosmcj/motos";
+const MOCKAPI_URL =
+	"https://69ac7e879ca639a5217f0cec.mockapi.io/motosmcj/motos";
 
 const MotoDetailContainer = () => {
 	const { id } = useParams();
@@ -40,9 +41,12 @@ const MotoDetailContainer = () => {
 		getMoto();
 	}, [id]);
 
-	if (!moto) {
-		return <p className="text-white text-center mt-20">Loading...</p>;
-	}
+	if (!moto)
+		return (
+			<p className="text-white text-center mt-20 tracking-widest">
+			LOADING...
+			</p>
+		);
 
 	return <MotoDetail moto={moto} />;
 };
