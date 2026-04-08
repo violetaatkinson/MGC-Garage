@@ -3,9 +3,12 @@ import { Link } from "react-router-dom";
 import { FaMotorcycle } from "react-icons/fa";
 import { CartContext } from "../../context/CartContext";
 import BackMotos from "../../components/BackMotos";
+import Loader from "../../components/Loader";
 
 const MotoDetail = ({ moto }) => {
 	const { addToCart } = useContext(CartContext);
+
+	if (!moto) return <Loader />
 
 	const handleAdd = () => {
 		addToCart({

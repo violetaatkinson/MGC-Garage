@@ -2,8 +2,11 @@ import React from "react";
 import { Link } from "react-router-dom";
 import HeaderPage from "../../components/HeaderPage";
 import ButtonHome from "../../components/ButtonHome";
+import Loader from "../../components/Loader";
 
 const Motos = ({ motos }) => {
+	 if (!motos) return <Loader />;  
+	 
 	return (
 		<>
 			<ButtonHome />
