@@ -1,13 +1,10 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { FaMapMarkerAlt, FaPhoneAlt, FaEnvelope, FaClock,} from "react-icons/fa";
-import { collection, addDoc, serverTimestamp } from "firebase/firestore";
-import { db } from "../../firebase/db";
+import { FaMapMarkerAlt, FaPhoneAlt, FaEnvelope, FaClock } from "react-icons/fa";
+import { useCheckout } from "../../hook/UseCheckout";
 import { CartContext } from "../../context/CartContext";
 import Swal from "sweetalert2";
 import Contact from "./Contact";
-
-const WHATSAPP_NUMBER = "18055745916";
 
 const details = [
 	{
@@ -66,6 +63,7 @@ const ContactContainer = () => {
 	const location = useLocation();
 	const navigate = useNavigate();
 	const { clearCart } = useContext(CartContext);
+	const { handleCheckout, loading } = useCheckout();
 
 	const cartData = location.state?.cart || [];
 	const cartTotal = location.state?.totalPrice || 0;
@@ -81,21 +79,19 @@ const ContactContainer = () => {
 	});
 
 	useEffect(() => {
-		if (fromCart && !done) {
-			const itemsList = cartData
-				.map((item) =>
-					item.category === "service"
-						? `• ${item.type} ($${Number(item.cost).toLocaleString()})`
-						: `• ${item.brand} ${item.model} ${item.year} ($${Number(item.cost).toLocaleString()})`,
-				)
-				.join("\n");
+		if (fromCart && !done && cartData.length > 0) {
+			const itemsList = cartData.map((item) =>
+				item.category === "service"
+					? `• ${item.type} ($${Number(item.cost).toLocaleString()})`
+					: `• ${item.brand} ${item.model} ${item.year} ($${Number(item.cost).toLocaleString()})`
+			).join("\n");
 
 			setFormData((prev) => ({
 				...prev,
 				message: `Hi! I'm interested in the following:\n\n${itemsList}\n\nTotal: $${(cartTotal * 1.07).toLocaleString()}`,
 			}));
 		}
-	}, [done]);
+	}, [fromCart, cartData, cartTotal, done]);
 
 	const handleChange = (e) => {
 		const { name, value } = e.target;
@@ -105,71 +101,35 @@ const ContactContainer = () => {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 
-		// 1 — WHATSAPP
-		const whatsappMessage = encodeURIComponent(
-			`*MCJ GARAGE INQUIRY*\n\n` +
-				`*Name:* ${formData.name}\n` +
-				`*Email:* ${formData.email}\n` +
-				`*Phone:* ${formData.phone || "Not provided"}\n\n` +
-				`*Message:*\n${formData.message}`,
-		);
-		window.open(
-			`https://wa.me/${WHATSAPP_NUMBER}?text=${whatsappMessage}`,
-			"_blank",
-		);
+		try {
+			await handleCheckout({
+				formData,
+				cartData,
+				cartTotal,
+				clearCart,
+				navigate,
+			});
 
-
-		Swal.fire({
-			title: "MESSAGE SENT!",
-			html: `
-				<p style="color:#a1a1aa; font-size:13px; letter-spacing:0.15em; line-height:1.8">
-					Thank you, <strong style="color:#d1d5db">${formData.name}</strong>!<br/>
-					We'll reach out to you shortly via WhatsApp or email.
-				</p>
-			`,
-			icon: "success",
-			background: "#18181b",
-			color: "#fff",
-			confirmButtonText: "BACK TO HOME",
-			confirmButtonColor: "#ff6b00",
-		}).then(() => {
 			setDone(true);
-			if (fromCart) {
-				clearCart();
-				navigate("/");
-			} else {
+
+			Swal.fire({
+				title: "ORDER SENT!",
+				text: "We'll contact you shortly.",
+				icon: "success",
+				confirmButtonColor: "#ff6b00",
+			});
+
+			if (!fromCart) {
 				setFormData({ name: "", email: "", phone: "", message: "" });
 			}
-		});
-
-		// 3 — FIRESTORE en segundo plano
-		try {
-			const order = {
-				buyer: {
-					name: formData.name,
-					email: formData.email,
-					phone: formData.phone || "Not provided",
-				},
-				items: fromCart
-					? cartData.map((item) => ({
-							id: item.id,
-							category: item.category,
-							cost: item.cost,
-							...(item.category === "service"
-								? { type: item.type, detail: item.detail }
-								: { brand: item.brand, model: item.model, year: item.year }),
-						}))
-					: [],
-				subtotal: cartTotal,
-				tax: parseFloat((cartTotal * 0.07).toFixed(2)),
-				total: parseFloat((cartTotal * 1.07).toFixed(2)),
-				message: formData.message,
-				date: serverTimestamp(),
-				status: "pending",
-			};
-			await addDoc(collection(db, "orders"), order);
 		} catch (error) {
-			console.error("Firestore error:", error);
+			console.error(error);
+
+			Swal.fire({
+				title: "ERROR",
+				text: "Something went wrong.",
+				icon: "error",
+			});
 		}
 	};
 
@@ -180,6 +140,7 @@ const ContactContainer = () => {
 			formData={formData}
 			handleChange={handleChange}
 			handleSubmit={handleSubmit}
+			loading={loading}
 		/>
 	);
 };

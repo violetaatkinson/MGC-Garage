@@ -9,6 +9,7 @@ const Contact = ({
 	formData,
 	handleChange,
 	handleSubmit,
+	loading,
 }) => {
 	return (
 		<>
@@ -110,9 +111,11 @@ const Contact = ({
 
 						<button
 							type="submit"
-							className="group w-full flex items-center justify-center gap-3 border border-[#ff6b00] text-white py-4 tracking-widest rounded-md transition-all duration-300 hover:bg-[#ff6b00] hover:scale-[1.02] active:scale-95 mt-10 mb-3"
+							disabled={loading}
+							className={`group w-full flex items-center justify-center gap-3 border border-[#ff6b00] py-4 tracking-widest rounded-md transition-all duration-300 mt-10 mb-3 ${loading ? "opacity-50 cursor-not-allowed" : "hover:bg-[#ff6b00] hover:scale-[1.02] active:scale-95"} text-white`}
 						>
-							SEND MESSAGE
+							{loading ? "⏳ SENDING..." : "SEND MESSAGE"}
+
 							<FaPaperPlane className="text-sm transition-transform duration-700 ease-out group-hover:translate-x-2 group-hover:-translate-y-1 group-hover:rotate-6" />
 						</button>
 					</form>
