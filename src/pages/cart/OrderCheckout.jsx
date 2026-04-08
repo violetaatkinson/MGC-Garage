@@ -1,5 +1,5 @@
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
-import { db } from "../firebase/db";
+import { db } from "../../firebase/db";
 
 export const createOrder = async ({ buyer, items, subtotal, message }) => {
 	const tax = parseFloat((subtotal * 0.07).toFixed(2));

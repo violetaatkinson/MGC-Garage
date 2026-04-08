@@ -14,7 +14,6 @@ const MotosContainer = () => {
 				// 1 — intenta Firestore primero
 				const data = await getMotos();
 				setMotos(data);
-				console.log(data)
 			} catch (error) {
 				console.warn("Firestore failed, using MockAPI fallback:", error);
 				try {
