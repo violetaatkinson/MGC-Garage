@@ -1,6 +1,11 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { FaMapMarkerAlt, FaPhoneAlt, FaEnvelope, FaClock } from "react-icons/fa";
+import {
+	FaMapMarkerAlt,
+	FaPhoneAlt,
+	FaEnvelope,
+	FaClock,
+} from "react-icons/fa";
 import { useCheckout } from "../../hook/UseCheckout";
 import { CartContext } from "../../context/CartContext";
 import Swal from "sweetalert2";
@@ -80,11 +85,13 @@ const ContactContainer = () => {
 
 	useEffect(() => {
 		if (fromCart && !done && cartData.length > 0) {
-			const itemsList = cartData.map((item) =>
-				item.category === "service"
-					? `• ${item.type} ($${Number(item.cost).toLocaleString()})`
-					: `• ${item.brand} ${item.model} ${item.year} ($${Number(item.cost).toLocaleString()})`
-			).join("\n");
+			const itemsList = cartData
+				.map((item) =>
+					item.category === "service"
+						? `• ${item.type} ($${Number(item.cost).toLocaleString()})`
+						: `• ${item.brand} ${item.model} ${item.year} ($${Number(item.cost).toLocaleString()})`,
+				)
+				.join("\n");
 
 			setFormData((prev) => ({
 				...prev,
@@ -114,9 +121,25 @@ const ContactContainer = () => {
 
 			Swal.fire({
 				title: "ORDER SENT!",
-				text: "We'll contact you shortly.",
-				icon: "success",
+				html: `
+        <p style="color:#a1a1aa; font-size:14px; letter-spacing:0.15em; margin-bottom:12px">
+            We'll contact you shortly.
+        </p>
+        <p style="color:#ff6b00; font-size:16px; font-weight:bold; letter-spacing:0.1em">
+            Thank you for your order!
+        </p>
+    `,
+				
+				background: "#18181b",
+				color: "#fff",
+				confirmButtonText: "OK",
 				confirmButtonColor: "#ff6b00",
+				showClass: {
+					popup: "animate__animated animate__fadeInDown",
+				},
+				hideClass: {
+					popup: "animate__animated animate__fadeOutUp",
+				},
 			});
 
 			if (!fromCart) {
