@@ -15,7 +15,7 @@
 
   <h3>🌐 Visita el sitio:</h3>
   <p>
-    [https://mcj-garage.vercel.app/]
+    [https://mgc-garage.vercel.app/]
   </p>
 
   <h3>📂 Código fuente</h3>
