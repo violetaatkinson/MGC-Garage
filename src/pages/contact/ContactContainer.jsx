@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useContext } from "react";
-import { useLocation, useNavigate, useMemo } from "react-router-dom";
+import React, { useState, useEffect, useContext, useMemo } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import { FaMapMarkerAlt, FaPhoneAlt, FaEnvelope, FaClock } from "react-icons/fa";
 import { useCheckout } from "../../hook/UseCheckout";
 import { CartContext } from "../../context/CartContext";
