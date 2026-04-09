@@ -1,11 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
-import {
-	FaMapMarkerAlt,
-	FaPhoneAlt,
-	FaEnvelope,
-	FaClock,
-} from "react-icons/fa";
+import { useLocation, useNavigate, useMemo } from "react-router-dom";
+import { FaMapMarkerAlt, FaPhoneAlt, FaEnvelope, FaClock } from "react-icons/fa";
 import { useCheckout } from "../../hook/UseCheckout";
 import { CartContext } from "../../context/CartContext";
 import Swal from "sweetalert2";
@@ -70,7 +65,7 @@ const ContactContainer = () => {
 	const { clearCart } = useContext(CartContext);
 	const { handleCheckout, loading } = useCheckout();
 
-	const cartData = location.state?.cart || [];
+	const cartData = useMemo(() => location.state?.cart || [], [location.state]);
 	const cartTotal = location.state?.totalPrice || 0;
 	const fromCart = cartData.length > 0;
 
@@ -93,10 +88,14 @@ const ContactContainer = () => {
 				)
 				.join("\n");
 
-			setFormData((prev) => ({
-				...prev,
-				message: `Hi! I'm interested in the following:\n\n${itemsList}\n\nTotal: $${(cartTotal * 1.07).toLocaleString()}`,
-			}));
+			const timer = setTimeout(() => {
+				setFormData((prev) => ({
+					...prev,
+					message: `Hi! I'm interested in the following:\n\n${itemsList}\n\nTotal: $${(cartTotal * 1.07).toLocaleString()}`,
+				}));
+			}, 0);
+
+			return () => clearTimeout(timer);
 		}
 	}, [fromCart, cartData, cartTotal, done]);
 
@@ -109,7 +108,7 @@ const ContactContainer = () => {
 		e.preventDefault();
 
 		try {
-			await handleCheckout({
+			const orderId = await handleCheckout({
 				formData,
 				cartData,
 				cartTotal,
@@ -122,24 +121,22 @@ const ContactContainer = () => {
 			Swal.fire({
 				title: "ORDER SENT!",
 				html: `
-        <p style="color:#a1a1aa; font-size:14px; letter-spacing:0.15em; margin-bottom:12px">
-            We'll contact you shortly.
-        </p>
-        <p style="color:#ff6b00; font-size:16px; font-weight:bold; letter-spacing:0.1em">
-            Thank you for your order!
-        </p>
-    `,
-				
+                <p style="color:#a1a1aa; font-size:14px; letter-spacing:0.15em; margin-bottom:12px">
+                    We'll contact you shortly.
+                </p>
+                <p style="color:#ff6b00; font-size:16px; font-weight:bold; letter-spacing:0.1em">
+                    Thank you for your order!
+                </p>
+                <p style="color: #ffffff; font-size: 14px; margin-top: 12px; font-weight: 500;">
+    				Your Order ID: <span style="color: #a1a1aa ;">${orderId}</span>
+				</p>
+            `,
 				background: "#18181b",
 				color: "#fff",
 				confirmButtonText: "OK",
 				confirmButtonColor: "#ff6b00",
-				showClass: {
-					popup: "animate__animated animate__fadeInDown",
-				},
-				hideClass: {
-					popup: "animate__animated animate__fadeOutUp",
-				},
+				showClass: { popup: "animate__animated animate__fadeInDown" },
+				hideClass: { popup: "animate__animated animate__fadeOutUp" },
 			});
 
 			if (!fromCart) {
