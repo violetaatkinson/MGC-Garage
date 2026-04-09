@@ -4,7 +4,7 @@ import { Routes, Route } from "react-router-dom";
 import ScreenContainer from "./pages/home/ScreenContainer"
 import MotosContainer from "./pages/motos/MotosContainer";
 import FixerContainer from "./pages/fix/FixerContainer";
-import ServiceContainer from "./pages/service/serviceContainer";
+import ServiceContainer from "././pages/service/ServiceContainer";
 import PartContainer from "./pages/parts/PartContainer";
 import ContactContainer from "./pages/contact/ContactContainer"
 import MotoDetailContainer from './pages/motos/MotoDetailContainer'
